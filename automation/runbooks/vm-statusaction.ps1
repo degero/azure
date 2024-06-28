@@ -10,9 +10,9 @@ Param
   [String] $vmRG,
 
   [Parameter (Mandatory = $true)]
-  [String] $action # start/stop/restart
+  [String] $action # start/stop/restart/deallocate
 )
-# Start/Stop/Restart VM
+# Start/Stop/Restart/Deallocate VM
 # Author: Chad Paynter
 "This runbook requires VM Contributor role on the VM or a custom role"
 try {
@@ -26,7 +26,6 @@ catch {
   throw $_.Exception
 }
 
-$action = "start"  # Replace with your actual value
 $result = ""
 switch ($action) {
   "start" {
@@ -41,9 +40,12 @@ switch ($action) {
     $result = "Restarting the service..."
     az vm restart -g $vmRG -n $vmName
   }
+  "deallocate" {
+    $result = "Stopping (Deallocating) the service..."
+    az vm deallocate -g $vmRG -n $vmName
+  }
   default {
-    Write-Output "Invalid action: $action"
-    # Handle any other cases here
+    $result = "Invalid action: $action"
   }
 }
 [OutputType([string])]
