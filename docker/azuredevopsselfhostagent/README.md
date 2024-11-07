@@ -14,13 +14,13 @@ Create a new agent pool if you wish to have agent in separate pool from default 
 
 - docker build --tag "azp-agent:linux" --file "./azp-agent-linux.dockerfile" .
 - Edit dockerstart.sh with AZP_URL, AZP_TOKEN from your url and PAT and AZP_POOL if you have a new pool
-- Run ./dockerstart.sh
+- Run ./dockerstart.sh (this will run as interactive so you can terminate)
 
 ### Windows docker
 
 - docker build --tag "azp-agent:windows" --file "./azp-agent-windows.dockerfile" .
 - Edit dockerstart.cmd with AZP_URL, AZP_TOKEN from your url and PAT and AZP_POOL if you have a new pool
-- Run ./dockerstart.cmd
+- Run ./dockerstart.cmd  (this will run as interactive so you can terminate)
 
 ## Run pipelines
 
