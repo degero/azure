@@ -1,0 +1,1 @@
+docker run --interactive --tty -e AZP_URL="" -e AZP_TOKEN="" -e AZP_POOL="Default" -e AZP_AGENT_NAME="Docker Agent - Windows" --name "azp-agent-windows" azp-agent:windows
