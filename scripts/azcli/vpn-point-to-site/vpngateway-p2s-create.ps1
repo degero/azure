@@ -79,7 +79,8 @@ az network vnet-gateway create `
   --address-prefix "172.16.201.0/24" `
   --no-wait
 
-Write-Host "VPN Gateway deployment started. Wait for the 'updating' status to complete in Azure Portal before configuring client Auth. You can configure certificate auth using create-selfsigned-server-client-certs.ps1 and vpngateway-p2s-certs.ps1 scripts."
+Write-Host "VPN Gateway deployment started."
+Write-Host "IMPORTANT!!! - Wait for the 'updating' status to complete in Azure Portal before configuring client Auth before entering in the certfile path prompt next."
 
 Write-Host "Creating Server and Client certs on you local machine..."
 
