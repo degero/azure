@@ -1,0 +1,10 @@
+az group create -n $RGName -l $Location
+$FuncName = "$FuncName"
+
+az storage account create --name storflexfucapp --location $Location --resource-group $RGName --sku Standard_LRS --allow-blob-public-access false
+
+// with always read 10instance	
+az functionapp create --resource-group $RGName --name $FuncName --storage-account storflexfucapp --flexconsumption-location $Location --runtime dotnet-isolated --runtime-version 9 --always-ready-instances http=10
+
+// set http concurrency rates
+az functionapp scale config set --resource-group --name $FuncName --trigger-type http --trigger-settings perInstanceConcurrency=10

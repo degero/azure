@@ -4,7 +4,8 @@ param (
   [string]$AutomationRG,
   [string]$AutomationName,
   [string]$SnapshotName,
-  [string]$SnapshotRG
+  [string]$SnapshotRG,
+  [string]$Location
 )
 # Author: Chad Paynter
 
@@ -23,9 +24,12 @@ if (-not $SnapshotName) {
 if (-not $SnapshotRG) {
   $SnapshotRG = Read-Host "SnapshotRG"
 }
+if (-not $Location) {
+  $Location = Read-Host "Location"
+}
 
 $RunbookName = "vm-openvpnvm-createfromsnap"
-$params = [ordered]@{"subscriptionId" = $SubscriptionId; "snapshotName" = $SnapshotName; "snapshotRG" = $SnapshotRG }
-
+$params = [ordered]@{"subscriptionId" = $SubscriptionId; "snapshotName" = $SnapshotName; "snapshotRG" = $SnapshotRG; "location" = $Location }
+Write-Host "Creating OpenVPN VM from snapshot, this may take a few minutes"
 Start-AzAutomationRunbook -AutomationAccountName $AutomationName -Name $RunbookName -ResourceGroupName $AutomationRG -Parameters $params -Wait
 Read-Host -Prompt "Press enter to close"

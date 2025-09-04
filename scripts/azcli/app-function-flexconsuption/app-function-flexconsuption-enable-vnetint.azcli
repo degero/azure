@@ -1,0 +1,2 @@
+
+az functionapp vnet-integration add --resource-group rg-flexfuncapp --name func-flexapp --vnet vnet-funcflexapp --subnet funcapp
